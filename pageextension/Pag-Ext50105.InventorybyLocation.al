@@ -1,4 +1,4 @@
-pageextension 50105 "Inventory By Location" extends "Planning Worksheet"
+pageextension 50105 "Inventory by Location" extends "Planning Worksheet"
 {
     layout
     {
