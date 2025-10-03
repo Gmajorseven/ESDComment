@@ -4,7 +4,7 @@ tableextension 50108 "Confirmation for ESD Comment" extends "Sales & Receivables
     {
         field(50100; "Confirmation for ESD Comment"; Boolean)
         {
-            Caption = 'Confirmation for ESD Comment';
+            Caption = 'Latest Confirmation for ESD Comment';
             DataClassification = ToBeClassified;
         }
     }

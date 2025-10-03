@@ -4,7 +4,7 @@ pageextension 50105 "Inventory By Location" extends "Planning Worksheet"
     {
         addfirst(FactBoxes)
         {
-            part(InventoryFactbox; "InventorybyLocationFactbox")
+            part("Inventory by Location"; "Inventory by Location")
             {
                 ApplicationArea = All;
                 SubPageLink = "Item No." = field("No."), "Location Code" = field("Location Code");
@@ -14,6 +14,6 @@ pageextension 50105 "Inventory By Location" extends "Planning Worksheet"
 
     trigger OnAfterGetCurrRecord()
     begin
-        CurrPage.InventoryFactbox.Page.UpdateInventoryQuantity(Rec."No.", Rec."Location Code");
+        CurrPage."Inventory by Location".Page.UpdateInventoryQuantity(Rec."No.", Rec."Location Code");
     end;
 }

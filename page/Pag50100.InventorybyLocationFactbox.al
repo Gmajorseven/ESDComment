@@ -1,7 +1,7 @@
-page 50100 InventoryByLocationFactbox
+page 50100 "Inventory by Location"
 {
     ApplicationArea = All;
-    Caption = 'InventoryByLocationFactbox';
+    Caption = 'Inventory by Location - Planning';
     PageType = CardPart;
     SourceTable = "Item Ledger Entry";
     SourceTableTemporary = true;
