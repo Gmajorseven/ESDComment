@@ -6,15 +6,22 @@ codeunit 50100 TransferESDComment
         Customer: Record Customer;
     begin
         GlobalSalesandReceivableSetup.Get();
-        if Confirm(GlobalConfirmQst) then begin
-            GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := true;
-            if GlobalSalesandReceivableSetup."Confirmation for ESD Comment" then
-                if Customer.Get(SalesHeader."Sell-to Customer No.") then
-                    if Customer."Transfer Comment" then
-                        SalesLine."ESD Comment" := Customer."ESD Comment";
-        end
-        else
+        if not Confirm(GlobalConfirmQst) then begin
             GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := false;
+            exit;
+        end;
+
+        GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := true;
+        if not GlobalSalesandReceivableSetup."Confirmation for ESD Comment" then
+            exit;
+
+        if not Customer.Get(SalesHeader."Sell-to Customer No.") then
+            exit;
+
+        if not Customer."Transfer Comment" then
+            exit;
+
+        SalesLine."ESD Comment" := Customer."ESD Comment";
     end;
 
     [EventSubscriber(ObjectType::Table, Database::"Purchase Line", 'OnAfterInitHeaderDefaults', '', false, false)]
@@ -23,15 +30,22 @@ codeunit 50100 TransferESDComment
         Vendor: Record Vendor;
     begin
         GlobalSalesandReceivableSetup.Get();
-        if Confirm(GlobalConfirmQst) then begin
-            GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := true;
-            if GlobalSalesandReceivableSetup."Confirmation for ESD Comment" then
-                if Vendor.Get(PurchHeader."Buy-from Vendor No.") then
-                    if Vendor."Transfer Comment" then
-                        PurchLine."ESD Comment" := Vendor."ESD Comment";
-        end
-        else
+        if not Confirm(GlobalConfirmQst) then begin
             GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := false;
+            exit;
+        end;
+
+        GlobalSalesandReceivableSetup."Confirmation for ESD Comment" := true;
+        if not GlobalSalesandReceivableSetup."Confirmation for ESD Comment" then
+            exit;
+
+        if not Vendor.Get(PurchHeader."Buy-from Vendor No.") then
+            exit;
+
+        if not Vendor."Transfer Comment" then
+            exit;
+
+        PurchLine."ESD Comment" := Vendor."ESD Comment";
     end;
 
     var
